@@ -14,6 +14,5 @@ end
 
 post :"/surveys" do
   current_user.created_surveys.create(params[:survey])
-  # The association from the last created survey of the current user is how this question will be tied to the survey.
-  redirect "/questions/new"
+  redirect "/survey/#{params[:survey][:id]}/questions/new"
 end
