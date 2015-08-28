@@ -18,16 +18,16 @@ Controller Files:
     get "/surveys/:id" | surveys#show
     post "/surveys" | surveys#create
   Questions
-    get "/questions/:id" | questions#show
-    get "/questions/new" | questions#new
+    get "takensurvey/:id/questions/:id" | questions#show
+    get "survey/:id/questions/new" | questions#new
     post "/questions" | questions#create
   Choices
-    get "/choices/new" | choices#new
+    get "question/:id/choices/new" | choices#new
     post "/choices" | choices#create
   Responses
     post "/responses" | responses#create
   TakenSurveys
     post "/takensurveys" | takensurveys#create
-    get "/takensurveys/new" | takensurveys#new
+    get "survey/:id/takensurveys/new" | takensurveys#new
     get "/takensurveys/:id" | takensurverys#show
 
