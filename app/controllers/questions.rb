@@ -14,9 +14,8 @@ get '/takensurveys/:taken_surveys_id/questions/:id' do
 end
 
 post '/questions' do
-  @survey = Survey.find_by(id: params[:survey][:id])
-  @survey.questions.create(survey: @survey, body: params[:question][:body])
-  "error" unless @survey && @question.save
-  @survey.questions << @question
-  redirect '/choices/new'
+  @survey = Survey.find_by(id: params[:survey_id])
+  @question = @survey.questions.build(survey: @survey, body: params[:question][:body])
+  "error" unless @question.save
+  redirect "question/#{@question.id}/choices/new"
 end
