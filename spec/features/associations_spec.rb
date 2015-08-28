@@ -25,3 +25,22 @@ describe User do
 		should validate_presence_of(:password)
 	end
 end
+
+describe Survey do
+
+	it 'should belong to a creator' do
+		should belong_to(:creator).class_name('User')
+	end
+
+	it 'should have many questions' do
+		should have_many(:questions)
+	end
+
+	it 'should validate the presence of title' do
+		should validate_presence_of(:title)
+	end
+
+	it 'should validate the presence of category' do
+		should validate_presence_of(:category)
+	end
+end
