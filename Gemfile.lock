@@ -111,6 +111,3 @@ DEPENDENCIES
   sinatra-contrib
   sinatra-flash
   sinatra-redirect-with-flash
-
-BUNDLED WITH
-   1.10.5
