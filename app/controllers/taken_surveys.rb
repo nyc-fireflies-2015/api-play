@@ -11,10 +11,10 @@ get '/takensurveys/:id' do
 end
 
 post '/takensurveys' do
-  @survey = Survey.find_by(id: params[:survey][:id])
+  @survey = Survey.find_by(id: params[:survey_id])
   @taken_survey = TakenSurvey.new(taker: current_user, survey: @survey)
-  "error" unless @survey && @taken_survey.save
+  "error" unless @taken_survey.save
   current_user.taken_surveys << @taken_survey
   @survey.taken_surveys << @taken_survey
-  redirect "/questions/1"
+  redirect "/takensurveys/#{@taken_survey.id}/questions/#{@survey.questions.first.id}"
 end
