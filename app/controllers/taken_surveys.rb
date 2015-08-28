@@ -6,6 +6,7 @@ end
 
 get '/takensurveys/:id' do
   @taken_survey = TakenSurvey.find_by(id: params[:id])
+  @survey = @taken_survey.survey
   "error" unless @taken_survey
   erb :'taken_surveys/show'
 end
