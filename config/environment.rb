@@ -10,6 +10,10 @@ require 'rubygems'
 
 require 'uri'
 require 'pathname'
+require 'bcrypt'
+require 'sinatra/flash'
+require 'sinatra/redirect_with_flash'
+require 'pry'
 
 require 'pg'
 require 'active_record'

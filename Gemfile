@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.1.0'
+ruby '2.2.1'
 
 # PostgreSQL driver
 gem 'pg'
@@ -7,6 +7,10 @@ gem 'pg'
 # Sinatra driver
 gem 'sinatra'
 gem 'sinatra-contrib'
+gem 'bcrypt'
+gem 'sinatra-flash'
+gem 'sinatra-redirect-with-flash'
+gem 'pry'
 
 gem 'activesupport', '~>4.2.0'
 gem 'activerecord', '~>4.2.0'
