@@ -14,6 +14,11 @@ post '/users' do
   end
 end
 
+get '/users/:id' do
+  @user = User.find_by(id: params[:id])
+  erb :'/users/show'
+end
+
 get '/users/edit' do
   @user = User.find_by(id: session[:user_id])
   erb :'/users/edit'

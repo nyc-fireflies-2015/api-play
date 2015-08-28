@@ -1,12 +1,13 @@
 <header>
   <a href="/">Home</a>
-  <% if logged_in? %>
-    <a href='/users/<%=@user.id%>'>Profile</a>
+  <%if logged_in?%>
+    <a href='/users/<%=session[:user_id]%>'>Profile</a>
     <form action='/logout' method='post'/>
       <input type="hidden" name="_method" value="DELETE">
       <input type='submit' value='Log Out'/>
     </form>
-  <% else%>
-    <a href="/users/new", id='signup'>Sign Up</a>
+  <%else%>
+    <a href="/login">Login</a>
+    <a href="/signup">Sign Up</a>
   <%end%>
 </header>
