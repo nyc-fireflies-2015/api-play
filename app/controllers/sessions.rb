@@ -15,5 +15,5 @@ end
 
 delete '/logout' do
   session.clear
-  redirect '/logged_out'
+  redirect '/'
 end

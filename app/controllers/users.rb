@@ -23,5 +23,4 @@ put '/users' do
   @user = User.find_by(id: session[:user_id])
   @user.update_attributes(params[:user])
   redirect '/'
-
 end
