@@ -1,7 +1,6 @@
-get '/takensurveys/new' do
-  @survey = Survey.find_by(id: params[:survey][:id])
-  @taken_survey = TakenSurvey.new
-  "error" unless @survey && @taken_survey
+get '/surveys/:survey_id/takensurveys/new' do
+  @survey = Survey.find_by(id: params[:survey_id])
+  "error" unless @survey
   erb :'taken_surveys/new'
 end
 
