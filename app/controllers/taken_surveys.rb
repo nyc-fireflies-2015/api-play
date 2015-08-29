@@ -1,6 +1,6 @@
 get '/surveys/:survey_id/takensurveys/new' do
   @survey = Survey.find_by(id: params[:survey_id])
-  "error" unless @survey
+  redirect '/something_bad_happened' unless @survey
   erb :'taken_surveys/new'
 end
 
