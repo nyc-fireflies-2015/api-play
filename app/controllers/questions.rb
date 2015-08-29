@@ -22,7 +22,6 @@ end
 
 get '/questions/:id/edit' do
   @question = Question.find_by(id: params[:id])
-  @survey = @question.survey
   if @question
     erb :'questions/edit'
   else
@@ -31,6 +30,9 @@ get '/questions/:id/edit' do
 end
 
 put '/questions/:id' do 
+  question = Question.find_by(id: params[:id])
+  question.update_attributes(params[:question])
+  redirect "/questions/#{question.id}/choices/edit"
 end
 
 delete '/questions/:id' do 
