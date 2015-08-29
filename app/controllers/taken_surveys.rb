@@ -12,9 +12,10 @@ get '/takensurveys/:id' do
 end
 
 post '/takensurveys' do
-  @survey = Survey.find_by(id: params[:survey][:title])
-  p "sldkfjlksdjflksjdflksjfklsdjkjj"
-  p @survey
+
+  binding.pry
+  @survey = Survey.find_by(id: params[:id])
+  # p @survey
   @taken_survey = TakenSurvey.new(taker: current_user, survey: @survey)
   "error" unless @taken_survey.save
   current_user.taken_surveys << @taken_survey
