@@ -12,4 +12,8 @@ class Survey < ActiveRecord::Base
   def created_by?(user)
     user.id==creator.id
   end
+
+  def total_takers
+    taken_surveys.count
+  end
 end
