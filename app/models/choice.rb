@@ -3,4 +3,5 @@ class Choice < ActiveRecord::Base
   has_many :selections
 
   validates_presence_of :body
+
 end

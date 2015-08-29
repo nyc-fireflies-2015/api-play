@@ -12,4 +12,17 @@ class Survey < ActiveRecord::Base
   def created_by?(user)
     user.id==creator.id
   end
+
+  def total_takers
+    taken_surveys.count
+  end
+
+  def num_times_chosen(id)
+    Selection.where(choice_id: id).count
+  end
+
+  def percentage(id)
+    num = num_times_chosen(id)
+    ((num/(total_takers * 1.0))*100).round(2)
+  end
 end
