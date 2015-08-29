@@ -12,10 +12,11 @@
 					<%question.choices.each do |choice|%>
 						<div id="choice_stat">
 							<div><%=choice.body%><div>
-							<p># of people</p>
-							<p>#/total %</p>
+							<p><%=choice.num_times_chosen(choice.id)%></p>
+							<p><%=3/4%></p>
 						</div>
 					<%end%>
+************************************************************
 				</div>
 		<%end%>
 	</div>
