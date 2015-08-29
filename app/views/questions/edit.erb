@@ -7,4 +7,9 @@
 		</form>
 	</div>
 
-	<p><a href="/users/<%=current_user.id%>">Finish editing survey</a></p>
+<form id="delete-questions" action="/questions/<%=@question.id%>" method="post">
+	<input type="hidden" name="_method" value="delete">
+	<input type="submit" value="Delete question">
+</form>	
+
+<p><a href="/users/<%=current_user.id%>">Finish editing survey</a></p>

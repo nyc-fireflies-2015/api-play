@@ -6,10 +6,6 @@
 			<p>
 				<label for="body">Choice <%=i+1%>: </label>
 				<input type="text" name="choice[<%=i%>][body]" value="<%=choice.body%>">
-				<form id="delete-choice" action="/choices/<%=choice.id%>" method="post">
-					<input type="hidden" name="_method" value="delete">
-					<input type="submit" value="Delete choice">
-				</form>	
 			</p>	
 		<% end %>
 		<input type="submit" value="Update Choices">
