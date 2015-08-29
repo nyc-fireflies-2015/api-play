@@ -7,5 +7,5 @@ class User < ActiveRecord::Base
 	has_many :responses
 
 	validates_presence_of :username, :email, :password
-	validates_uniqueness_of :username
+	validates_uniqueness_of :username, message: "has already been taken"
 end
