@@ -5,7 +5,7 @@ get 'surveys/:id/questions/new' do
   erb :'questions/new'
 end
 
-get '/takensurveys/:taken_surveys_id/questions/:id' do
+get '/takensurveys/:taken_survey_id/questions/:id' do
   @question = Question.find_by(id: params[:id])
   @taken_survey = TakenSurvey.find_by(id: params[:taken_survey_id])
   "error" unless @question && @taken_survey
@@ -17,5 +17,5 @@ post '/questions' do
   @survey = Survey.find_by(id: params[:survey_id])
   @question = @survey.questions.build(survey: @survey, body: params[:question][:body])
   "error" unless @question.save
-  redirect "question/#{@question.id}/choices/new"
+  redirect "questions/#{@question.id}/choices/new"
 end

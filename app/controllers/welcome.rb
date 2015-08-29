@@ -1,4 +1,3 @@
 get '/' do
-  @user =
-  erb :'/home'
+  erb :'home'
 end
