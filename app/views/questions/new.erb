@@ -1,8 +1,7 @@
 <h2>Create New Question</h2>
 	<div id="new_question_form">
 		<form action="/questions" method="POST">
-			<label for="body">Question : </label>
-			<input id="body" type="text" name="question[body]">
+			<%= erb :"questions/_form", locals: {question: @question} %>
 			<input type="hidden" name="survey_id" value="<%=@survey.id%>">
 			<input type="submit" value="Create Question">
 		</form>

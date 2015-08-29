@@ -28,6 +28,13 @@ get "/surveys/:id/edit" do
 end
 
 put "/surveys/:id" do
+	survey = Survey.find_by(id: params[:id])
+	survey.update_attributes(params[:survey])
+	if survey.save
+		redirect "/questions/#{survey.questions.first.id}/edit"
+	else
+		"error"
+	end	
 end
 
 delete "/surveys/:id" do
