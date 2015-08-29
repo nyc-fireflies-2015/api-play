@@ -1,3 +1,4 @@
+require 'pry'
 get "/surveys" do
   @surveys = Survey.limit(25).order(updated_at: :desc)
   erb :"/surveys/index"
@@ -13,6 +14,6 @@ get "/surveys/:id" do
 end
 
 post "/surveys" do
-  current_user.created_surveys.create(params[:survey])
-  redirect "/survey/#{params[:survey][:id]}/questions/new"
+  survey = current_user.created_surveys.create(params[:survey])
+  redirect "/surveys/#{survey.id}/questions/new"
 end
