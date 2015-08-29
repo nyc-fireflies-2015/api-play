@@ -1,6 +1,7 @@
 get '/questions/:id/choices/new' do
   @question = Question.find_by(id: params[:id])
-  "error" unless @question
+ 	# fix all 404 error handling	
+ 	# status 404 erb :somethingwrong unless @question
   erb :'choices/new'
 end
 
@@ -16,6 +17,8 @@ get '/questions/:id/choices/edit' do
 		@choices = @question.choices
 		erb :'choices/edit'
 	else
+		#fix this
+		#throw flash error, redirect to home
 		"unauth"
 	end	
 end
