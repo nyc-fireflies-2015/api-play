@@ -19,7 +19,8 @@ get '/users/:id' do
   if logged_in? && current_user==@user
     erb :'users/show'
   else
-    "unauthorized error"
+    flash[:error] = "You can only see your own profile!"
+    redirect '/'
   end
 end
 
