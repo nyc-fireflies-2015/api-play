@@ -1,1 +1,8 @@
-SURVEYS INDEX
+<h1>Surveys</h1>
+	<div id="survey_list">
+		<%@surveys.each do |survey|%>
+		<div id="survey_link">
+			<a href = "/surveys/<%=survey.id%>/takensurveys/new"><%=survey.title%></a>
+		</div>
+		<%end%>
+	</div>
