@@ -16,4 +16,8 @@ class Survey < ActiveRecord::Base
   def total_takers
     taken_surveys.count
   end
+
+  def num_times_chosen
+    taken_surveys.selections.where(choice_id: choice.id).count
+  end
 end
