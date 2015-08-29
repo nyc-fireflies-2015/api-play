@@ -1,2 +1,14 @@
 <h1 class="title">Thanks for taking the "<%=@taken_survey.survey.title%>" survey, <%=current_user.username%>!</h1>
+<div id=thank-you-summary>
+<p>
+  <%TakenSurvey.taken_summary(@taken_survey).each do|question, answer|%>
+    <p>Question: <%=question%></p>
+    <p>You chose: <%=answer%>
+  <%end%>
+</p>
+
+
+
+</p>
+</div>
 <p><a href='/surveys'>Take another Survey!</a>
