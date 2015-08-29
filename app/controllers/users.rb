@@ -16,14 +16,20 @@ end
 
 get '/users/:id' do
   @user = User.find_by(id: params[:id])
-  erb :'/users/show' if @user==current_user
-  "unauthorized error"
+  if logged_in? && current_user==@user
+    erb :'users/show'
+  else
+    "unauthorized error"
+  end
 end
 
 get '/users/:id/edit' do
   @user = User.find_by(id: params[:id])
-  erb :'/users/edit' if @user==current_user
+  if logged_in? && @user==current_user
+  erb :'users/edit'
+else
   "unauthorized error"
+end
 end
 
 put '/users' do
