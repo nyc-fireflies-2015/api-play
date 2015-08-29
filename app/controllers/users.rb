@@ -16,7 +16,11 @@ end
 
 get '/users/:id' do
   @user = User.find_by(id: params[:id])
-  erb :'/users/show'
+  if logged_in?
+    erb :'/users/show'
+  else
+    redirect '/login'
+  end
 end
 
 get '/users/edit' do
