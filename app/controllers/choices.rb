@@ -17,12 +17,14 @@ get '/questions/:id/choices/edit' do
 end
 
 put '/questions/:id/choices' do 
-	@question = Question.find_by(id: params[:id])
-	binding.pry
-	@question.choices.each_with_index do |choice, i|
-		choice.update_attributes(params[:choice]["#{i}"])
-	end	
-	binding.pry
+	question = Question.find_by(id: params[:id])
+	question.update_choices(params[:choice])
+	next_question = question.survey.next_question(question)
+	if next_question.nil?
+		redirect "/users/#{current_user.id}"
+	else	
+		redirect "/questions/#{next_question.id}/edit"
+	end
 end
 
 delete '/choices/:id' do 
