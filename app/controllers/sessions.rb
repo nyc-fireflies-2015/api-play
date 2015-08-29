@@ -8,8 +8,8 @@ post '/login' do
     session[:user_id] = user.id
     redirect '/'
   else
-    #add flash error
-    redirect '/fail'
+    flash[:error] = "Invalid login!"
+    redirect '/login'
   end
 end
 

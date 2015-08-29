@@ -9,8 +9,8 @@ post '/users' do
     session[:user_id] = user.id
     redirect to'/'
   else
-    #add flash error
-    redirect '/fail'
+    flash[:error] = "Invalid signup!"
+    redirect '/signup'
   end
 end
 
@@ -26,10 +26,11 @@ end
 get '/users/:id/edit' do
   @user = User.find_by(id: params[:id])
   if logged_in? && @user==current_user
-  erb :'users/edit'
-else
-  "unauthorized error"
-end
+    erb :'users/edit'
+  else
+    flash[:error] = "You need to be logged in!"
+    redirect '/login'
+  end
 end
 
 put '/users' do
