@@ -19,6 +19,7 @@ post "/surveys" do
 end
 
 get "/surveys/:id/edit" do
+  @survey = Survey.find_by(id: params[:id])
 end
 
 put "/surveys/:id" do
