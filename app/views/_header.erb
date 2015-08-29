@@ -1,13 +1,15 @@
 <header>
-  <a href="/">Home</a>
-  <%if logged_in?%>
-    <a href='/users/<%=session[:user_id]%>'>Profile</a>
-    <form action='/logout' method='post'/>
-      <input type="hidden" name="_method" value="DELETE">
-      <input type='submit' value='Log Out'/>
-    </form>
-  <%else%>
-    <a href="/login">Login</a>
-    <a href="/signup">Sign Up</a>
-  <%end%>
+  <ul id="navlist">
+    <li><a href="/">Home</a></li>
+    <%if logged_in?%>
+      <li><a href='/users/<%=session[:user_id]%>'>Profile</a></li>
+<!--       <li><form action='/logout' method='post'/>
+        <input type="hidden" name="_method" value="DELETE">
+        <input class="button" type='submit' value='Log Out'/>
+      </form></li>
+ -->    <%else%>
+      <li><a href="/login">Login</a></li>
+      <li><a href="/signup">Sign Up</a></li>
+    <%end%>
+  <ul>
 </header>
