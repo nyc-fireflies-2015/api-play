@@ -28,4 +28,8 @@ put '/questions/:id/choices' do
 end
 
 delete '/choices/:id' do 
+	choice = Choice.find_by(id: params[:id])
+	question = choice.question
+	choice.destroy
+	redirect "/questions/#{question.id}/choices/edit"
 end	
