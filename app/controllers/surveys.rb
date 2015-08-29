@@ -20,6 +20,11 @@ end
 
 get "/surveys/:id/edit" do
   @survey = Survey.find_by(id: params[:id])
+  if @survey.created_by?(current_user)
+  	erb :'surveys/edit' 
+	else	 	 	
+  	"unauth error"
+	end
 end
 
 put "/surveys/:id" do
