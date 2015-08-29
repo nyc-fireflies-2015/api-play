@@ -31,12 +31,3 @@ Use these routes for reference.
 ### Wireframe
 
 ![](wireframe.jpg)
-
-* Clone the repo into your terminal
-* Run `bundle install`
-* Run `bundle execute rake db:create`
-* Run `bundle execute rake db:migrate`
-* Run `bundle execute rake db:seed`
-* Run `bundle execute rake db:seed`
-* Run `bundle execute shotgun`
-* Open your browser and go to your local host.  By default shotgun uses `localhost:9393/`
