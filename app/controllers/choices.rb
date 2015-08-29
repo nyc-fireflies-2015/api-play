@@ -11,9 +11,18 @@ post '/choices' do
 end
 
 get '/questions/:id/choices/edit' do 
+	@question = Question.find_by(id: params[:id])
+	@choices = @question.choices
+	erb :'choices/edit'
 end
 
-put '/choices/:id' do 
+put '/questions/:id/choices' do 
+	@question = Question.find_by(id: params[:id])
+	binding.pry
+	@question.choices.each_with_index do |choice, i|
+		choice.update_attributes(params[:choice]["#{i}"])
+	end	
+	binding.pry
 end
 
 delete '/choices/:id' do 

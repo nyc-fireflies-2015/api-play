@@ -1,6 +1,6 @@
 <h2>Edit Question</h2>
 	<div id="edit_question_form">
-		<form action="/questions/<%=@question.id%>" method="POST">
+		<form action="/questions/<%=@question.id%>" method="post">
 			<input type="hidden" name="_method" value="put">
 			<%= erb :'questions/_form', locals: {question: @question} %>
 			<input type="submit" value="Update question">
