@@ -1,2 +1,14 @@
 <h1 class="title"><%=current_user.username%>'s Profile</h1>
 <p><a href='/users/<%=current_user.id%>/edit'>Edit Profile</a></p>
+<h3>Here are your surveys: </h3>
+<div id='user-surveys'>
+  <%@user.created_surveys.each do |survey| %>
+    <li><a href='/surveys/<%survey.id%>'><%=survey.title%></li>
+    <a href='/surveys<%survey.id%>edit'>Edit</a>
+    <p><form action='/surveys/<%=survey.id%>' method='POST'>
+      <input type='hidden' name='_method' value='DELETE'/>
+      <input type='submit' value='Delete Survey'/>
+      </form>
+    </p>
+  <%end%>
+</div>

@@ -21,9 +21,10 @@ end
 get "/surveys/:id/edit" do
   @survey = Survey.find_by(id: params[:id])
   if @survey.created_by?(current_user)
-  	erb :'surveys/edit' 
-	else	 	 	
-  	"unauth error"
+  	erb :'surveys/edit'
+	else
+  	flash[:error] = "You cannot edit this survey!"
+    redirect '/surveys'
 	end
 end
 
@@ -34,4 +35,5 @@ put "/surveys/:id" do
 end
 
 delete "/surveys/:id" do
+  survey = Survey.find_by(id: params[:id])
 end
