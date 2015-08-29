@@ -12,7 +12,7 @@ get "/surveys/:id" do
   erb :"/surveys/show"
 end
 
-post :"/surveys" do
+post "/surveys" do
   current_user.created_surveys.create(params[:survey])
   redirect "/survey/#{params[:survey][:id]}/questions/new"
 end

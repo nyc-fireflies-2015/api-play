@@ -2,9 +2,9 @@
 	<div id="new_survey_form">
 		<form action="/surveys" method="POST">
 			<label for="title">Title</label>
-			<input id ="title" type="text" name="title">
-			<label for="category">Category</label>		
-			<input id="category" type="text" name="category">
+			<input id ="title" type="text" name="survey[title]">
+			<label for="category">Category</label>
+			<input id="category" type="text" name="survey[category]">
 			<input type="submit" value="Create Survey">
 		</form>
 </div>
