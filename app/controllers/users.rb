@@ -7,8 +7,9 @@ post '/users' do
   user = User.new(params[:user])
   if user.save
     session[:user_id] = user.id
-    redirect to'/'
+    redirect '/'
   else
+    #send full messages
     flash[:error] = "Invalid signup!"
     redirect '/signup'
   end
@@ -19,6 +20,7 @@ get '/users/:id' do
   if logged_in? && current_user==@user
     erb :'users/show'
   else
+    #unauth error messages
     flash[:error] = "You can only see your own profile!"
     redirect '/'
   end
@@ -29,6 +31,7 @@ get '/users/:id/edit' do
   if logged_in? && @user==current_user
     erb :'users/edit'
   else
+    #unauth error messages
     flash[:error] = "You need to be logged in!"
     redirect '/login'
   end
