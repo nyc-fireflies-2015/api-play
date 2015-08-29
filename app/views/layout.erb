@@ -16,7 +16,12 @@
   <title>Survey Pony</title>
 </head>
 <body>
-<%=erb :'_header'%>
-   <%= yield %>
+  <%=erb :'_header'%>
+  <%if flash[:error] %>
+    <div id='flash-error'>
+      <%=flash[:error]%>
+    </div>
+  <%end%>
+  <%= yield %>
 </body>
 </html>
