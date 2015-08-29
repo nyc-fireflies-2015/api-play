@@ -1,4 +1,3 @@
-require 'pry'
 get "/surveys" do
   @surveys = Survey.limit(25).order(updated_at: :desc)
   erb :"/surveys/index"
