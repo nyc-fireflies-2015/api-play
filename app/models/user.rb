@@ -6,6 +6,6 @@ class User < ActiveRecord::Base
 	has_many :taken_surveys, foreign_key: :taker_id
 	has_many :selections
 
-	validates_presence_of :username, :email, :password
+	validates_presence_of :username, :email
 	validates_uniqueness_of :username, message: "has already been taken"
 end
