@@ -12,7 +12,8 @@ get "/surveys/:id" do
   erb :"/surveys/show"
 end
 
-post :"/surveys" do
-  current_user.created_surveys.create(params[:survey])
-  redirect "/survey/#{params[:survey][:id]}/questions/new"
+post "/surveys" do
+  @survey = Survey.new(title: params[:survey][:title],category: params[:survey][:category])
+  @survey.save
+  redirect "/"
 end
