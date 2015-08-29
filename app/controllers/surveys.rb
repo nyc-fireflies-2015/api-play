@@ -13,7 +13,6 @@ get "/surveys/:id" do
 end
 
 post "/surveys" do
-  @survey = Survey.new(title: params[:survey][:title],category: params[:survey][:category])
-  @survey.save
-  redirect "/"
+  current_user.created_surveys.create(params[:survey])
+  redirect "/survey/#{params[:survey][:id]}/questions/new"
 end
