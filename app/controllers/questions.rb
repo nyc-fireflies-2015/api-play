@@ -22,10 +22,10 @@ end
 
 get '/questions/:id/edit' do
   @question = Question.find_by(id: params[:id])
-  if @question
+  if @question.survey.created_by?(current_user)
     erb :'questions/edit'
   else
-    "error"
+    "unauth"
   end  
 end
 
@@ -36,4 +36,12 @@ put '/questions/:id' do
 end
 
 delete '/questions/:id' do 
+  question = Question.find_by(id: params[:id])
+  question.destroy
+  next_question = question.survey.next_question(question)
+  if next_question.nil?
+    redirect "/users/#{current_user.id}"
+  else  
+    redirect "/questions/#{next_question.id}/edit"
+  end
 end  

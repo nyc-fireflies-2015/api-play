@@ -1,11 +1,15 @@
 <h2>Edit Choices</h2>
 	<div id="edit_choice_form">
-		<form action="/choices" method="POST">
-			<% 4.times.with_index do |choice, i| %>
+		<form id="edit-choices" action="/questions/<%=@question.id%>/choices" method="post">
+		<input type="hidden" name="_method" value="put">
+		<% @choices.each_with_index do |choice, i| %>
+			<p>
 				<label for="body">Choice <%=i+1%>: </label>
-				<input id="body" type="text" name="choice[<%=i%>][body]">
-			<% end %>
-			<input type="hidden" name="question_id" value="<%=@question.id%>">
-			<input type="submit" value="Add Choices">
+				<input type="text" name="choice[<%=i%>][body]" value="<%=choice.body%>">
+			</p>	
+		<% end %>
+		<input type="submit" value="Update Choices">
 		</form>
 	</div>
+
+<p><a href="/users/<%=current_user.id%>">Finish editing</a></p>

@@ -11,10 +11,23 @@ post '/choices' do
 end
 
 get '/questions/:id/choices/edit' do 
+	@question = Question.find_by(id: params[:id])
+	if @question.survey.created_by?(current_user)
+		@choices = @question.choices
+		erb :'choices/edit'
+	else
+		"unauth"
+	end	
 end
 
-put '/choices/:id' do 
+put '/questions/:id/choices' do 
+	question = Question.find_by(id: params[:id])
+	question.update_choices(params[:choice])
+	next_question = question.survey.next_question(question)
+	if next_question.nil?
+		redirect "/users/#{current_user.id}"
+	else	
+		redirect "/questions/#{next_question.id}/edit"
+	end
 end
 
-delete '/choices/:id' do 
-end	
