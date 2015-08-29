@@ -14,7 +14,5 @@ post '/takensurveys' do
   @survey = Survey.find_by(id: params[:survey_id])
   @taken_survey = TakenSurvey.new(taker: current_user, survey: @survey)
   "error" unless @taken_survey.save
-  current_user.taken_surveys << @taken_survey
-  @survey.taken_surveys << @taken_survey
   redirect "/takensurveys/#{@taken_survey.id}/questions/#{@survey.questions.first.id}"
 end
