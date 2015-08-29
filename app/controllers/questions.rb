@@ -19,3 +19,21 @@ post '/questions' do
   "error" unless @question.save
   redirect "questions/#{@question.id}/choices/new"
 end
+
+get '/questions/:id/edit' do
+  @question = Question.find_by(id: params[:id])
+  if @question
+    erb :'questions/edit'
+  else
+    "error"
+  end  
+end
+
+put '/questions/:id' do 
+  question = Question.find_by(id: params[:id])
+  question.update_attributes(params[:question])
+  redirect "/questions/#{question.id}/choices/edit"
+end
+
+delete '/questions/:id' do 
+end  

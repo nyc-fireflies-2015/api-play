@@ -9,3 +9,12 @@ post '/choices' do
   @question.add_choices(params[:choice])
   redirect "/surveys/#{@question.survey.id}/questions/new"
 end
+
+get '/questions/:id/choices/edit' do 
+end
+
+put '/choices/:id' do 
+end
+
+delete '/choices/:id' do 
+end	
