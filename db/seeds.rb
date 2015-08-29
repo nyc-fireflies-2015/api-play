@@ -1,5 +1,3 @@
-require 'faker'
-
 bojack = User.create!(username: "bojack_horseman", email: "bojack@horse.com", password: "1234")
 caroline = User.create!(username: "princess_caroline", email: "caroline@cat.com", password: "1234")
 todd = User.create!(username: "todd", email: "todd@human.com", password: "1234")

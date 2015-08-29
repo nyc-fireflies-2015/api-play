@@ -1,8 +1,4 @@
-get '/login' do
-  erb :'users/login'
-end
-
-post '/login' do
+post '/session' do
   if user = User.find_by(username: params[:username]).try(:authenticate, params[:password])
     session[:user_id] = user.id
     redirect '/'

@@ -3,7 +3,7 @@
     <li><a href="/">Home</a></li>
     <%if logged_in?%>
       <li><a href='/users/<%=session[:user_id]%>'>Profile</a></li>
-<!--       <li><form action='/logout' method='post'/>
+<!--       <li><form action='/session' method='post'/>
         <input type="hidden" name="_method" value="DELETE">
         <input class="button" type='submit' value='Log Out'/>
       </form></li>
