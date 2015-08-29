@@ -3,7 +3,7 @@ post '/selections' do
   @choice = Choice.find_by(id: params[:choice_id])
   @selection = Selection.new(taken_survey: @taken_survey, user: current_user, choice: @choice)
   "error" unless @selection.save
-  @next_question = @taken_survey.survey.next_question(@choice.question)
-  redirect "/takensurveys/#{@taken_survey.id}" if @next_question.nil?
-  redirect "/takensurveys/#{@taken_survey.id}/questions/#{@next_question.id}"
+  next_question = @taken_survey.survey.next_question(@choice.question)
+  redirect "/takensurveys/#{@taken_survey.id}" if next_question.nil?
+  redirect "/takensurveys/#{@taken_survey.id}/questions/#{next_question.id}"
 end
