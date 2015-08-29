@@ -1,4 +1,4 @@
-get 'surveys/:id/questions/new' do
+get '/surveys/:id/questions/new' do
   @survey = Survey.find_by(id: params[:id])
   @question = Question.new
   "error" unless @survey && @question

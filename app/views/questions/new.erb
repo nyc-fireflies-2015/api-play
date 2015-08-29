@@ -1,0 +1,12 @@
+<h2>Create New Question</h2>
+	<div id="new_question_form">
+		<form action="/questions" method="POST">
+			<label for="body">Question : </label>
+			<input id="body" type="text" name="question[body]">
+			<input type="hidden" name="survey_id" value="<%=@survey.id%>">
+			<input type="submit" value="Create Question">
+		</form>
+	</div>
+	<div id="finish_survey_link">
+		<a href="/surveys">Finish Survey</a>
+	</div>
