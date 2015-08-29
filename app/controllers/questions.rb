@@ -22,10 +22,10 @@ end
 
 get '/questions/:id/edit' do
   @question = Question.find_by(id: params[:id])
-  if @question
+  if @question.survey.created_by?(current_user)
     erb :'questions/edit'
   else
-    "error"
+    "unauth"
   end  
 end
 

@@ -12,8 +12,12 @@ end
 
 get '/questions/:id/choices/edit' do 
 	@question = Question.find_by(id: params[:id])
-	@choices = @question.choices
-	erb :'choices/edit'
+	if @question.survey.created_by?(current_user)
+		@choices = @question.choices
+		erb :'choices/edit'
+	else
+		"unauth"
+	end	
 end
 
 put '/questions/:id/choices' do 
