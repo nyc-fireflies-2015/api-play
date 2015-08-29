@@ -16,16 +16,14 @@ end
 
 get '/users/:id' do
   @user = User.find_by(id: params[:id])
-  if logged_in?
-    erb :'/users/show'
-  else
-    redirect '/login'
-  end
+  erb :'/users/show' if @user==current_user
+  "unauthorized error"
 end
 
-get '/users/edit' do
-  @user = User.find_by(id: session[:user_id])
-  erb :'/users/edit'
+get '/users/:id/edit' do
+  @user = User.find_by(id: params[:id])
+  erb :'/users/edit' if @user==current_user
+  "unauthorized error"
 end
 
 put '/users' do
