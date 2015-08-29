@@ -3,8 +3,8 @@
 <h3>Here are your surveys: </h3>
 <div id='user-surveys'>
   <%@user.created_surveys.each do |survey| %>
-    <li><a href='/surveys/<%survey.id%>'><%=survey.title%></li>
-    <a href='/surveys<%survey.id%>edit'>Edit</a>
+    <li><a href='/surveys/<%=survey.id%>'><%=survey.title%></li>
+    <a href='/surveys/<%=survey.id%>/edit'>Edit</a>
     <p><form action='/surveys/<%=survey.id%>' method='POST'>
       <input type='hidden' name='_method' value='DELETE'/>
       <input type='submit' value='Delete Survey'/>
