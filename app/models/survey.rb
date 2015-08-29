@@ -8,4 +8,8 @@ class Survey < ActiveRecord::Base
   def next_question(current_question)
     questions.find_by(id:current_question.id+1)
   end
+
+  def created_by?(user)
+    user.id==creator.id
+  end
 end
