@@ -4,7 +4,4 @@ class Choice < ActiveRecord::Base
 
   validates_presence_of :body
 
-  def num_times_chosen(id)
-    Selection.where(choice_id: id).count
-  end
 end
