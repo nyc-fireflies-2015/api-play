@@ -1,7 +1,5 @@
 get '/questions/:id/choices/new' do
   @question = Question.find_by(id: params[:id])
- 	# fix all 404 error handling
- 	# status 404 erb :somethingwrong unless @question
   erb :'choices/new'
 end
 
