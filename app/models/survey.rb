@@ -6,7 +6,7 @@ class Survey < ActiveRecord::Base
 
   validates_presence_of :title, :category
 
-  def next_question(current_question=0)
+  def next_question(current_question)
     questions.find_by(id:current_question.id+1)
   end
 
