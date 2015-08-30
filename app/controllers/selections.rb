@@ -3,10 +3,10 @@ post '/selections' do
   choice = Choice.find_by(id: params[:choice_id])
   selection = Selection.new(taken_survey: taken_survey, user: current_user, choice: choice)
   survey = taken_survey.survey
-  taken_summary = taken_survey.taken_summary
   next_question = survey.next_question(choice.question)
 
   if selection.save
+    taken_summary = taken_survey.taken_summary
     if request.xhr?
       if next_question.nil?
         erb :"/taken_surveys/_show_answers", layout: false, locals: {
@@ -20,7 +20,8 @@ post '/selections' do
         }
       end
     else
-      redirect "/takensurveys/#{taken_survey.id}"
+      redirect "/takensurveys/#{taken_survey.id}" if next_question.nil?
+      redirect "/takensurveys/#{taken_survey.id}/questions/#{next_question.id}"
     end
   else
     flash[:error] = selection.errors.full_messages
