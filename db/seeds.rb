@@ -36,16 +36,16 @@ s1_q4_choices.map! { |choice| s1_q4.choices.create(body: choice)}
 
 
 s2_q1_choices = ["Tomato","Tomato","Neither"]
-s2_q1_choices.each { |choice| s1_q1.choices.create(body: choice)}
+s2_q1_choices.each { |choice| s2_q1.choices.create(body: choice)}
 
 s2_q2_choices = ["Soup","Salad","Neither"]
-s2_q2_choices.map! { |choice| s1_q2.choices.create(body: choice)}
+s2_q2_choices.map! { |choice| s2_q2.choices.create(body: choice)}
 
 s2_q3_choices = ["Paper","Plastic","bananas"]
-s2_q3_choices.map! { |choice| s1_q3.choices.create(body: choice)}
+s2_q3_choices.map! { |choice| s2_q3.choices.create(body: choice)}
 
 s2_q4_choices = ["Potato","Potato","Potato Soup"]
-s2_q4_choices.map! { |choice| s1_q4.choices.create(body: choice)}
+s2_q4_choices.map! { |choice| s2_q4.choices.create(body: choice)}
 
 
 taken_1 = TakenSurvey.create(survey_id: 1, taker_id: 3)
