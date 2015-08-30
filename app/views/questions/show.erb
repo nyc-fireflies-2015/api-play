@@ -1,4 +1,6 @@
 <h1 class="title"><%=@question.survey.title%></h1>
 
-<%= erb :"/questions/_draw_question", locals: {
+<div class="question_wrapper">
+  <%= erb :"/questions/_draw_question", locals: {
   question: @question, taken_survey: @taken_survey }%>
+</div>
