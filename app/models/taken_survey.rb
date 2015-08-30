@@ -4,10 +4,9 @@ class TakenSurvey < ActiveRecord::Base
   has_many :selections
 
   def taken_summary
-    summary_hash = selections.each_with_object({}) do |selection, hash|
+    selections.map.with_object({}) do |selection, hash|
       hash[selection.choice.question.body] = selection.choice.body
     end
-    summary_hash
   end
 
 end
