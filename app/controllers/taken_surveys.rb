@@ -15,9 +15,10 @@ end
 post '/takensurveys' do
   survey = Survey.find_by(id: params[:survey_id])
   taken_survey = TakenSurvey.new(taker: current_user, survey: survey)
+  question = survey.next_question()
   if taken_survey.save
     if request.xhr?
-      "we hear you!"
+      erb :"/questions/_draw_question", layout: false, locals: {question: question, taken_survey: taken_survey}
     else
       redirect "/takensurveys/#{taken_survey.id}/questions/#{survey.questions.first.id}"
     end
