@@ -9,6 +9,14 @@ th {
   text-align: left;
 }
 
+.notice {
+  color: green;
+}
+
+.error {
+  color: red;
+}
+
 .button {
      background:none!important;
      border:none;
