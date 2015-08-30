@@ -14,8 +14,13 @@ get "/surveys/:id" do
 end
 
 post "/surveys" do
-  survey = current_user.created_surveys.create(params[:survey])
-  redirect "/surveys/#{survey.id}/questions/new"
+  survey = current_user.created_surveys.new(params[:survey])
+  if survey.save
+    redirect "/surveys/#{survey.id}/questions/new"
+  else
+    flash[:error] = ['You need a title and a category!']
+    erb :'surveys/new'
+  end
 end
 
 get "/surveys/:id/edit" do
