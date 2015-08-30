@@ -20,7 +20,8 @@ post '/selections' do
         }
       end
     else
-      redirect "/takensurveys/#{taken_survey.id}"
+      redirect "/takensurveys/#{taken_survey.id}" if next_question.nil?
+      redirect "/takensurveys/#{taken_survey.id}/questions/#{next_question.id}"
     end
   else
     flash[:error] = selection.errors.full_messages
