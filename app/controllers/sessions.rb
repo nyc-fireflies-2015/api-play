@@ -3,7 +3,7 @@ post '/session' do
     session[:user_id] = user.id
     redirect '/'
   else
-    flash[:error] = "Invalid login!"
+    flash[:error] = ["Incorrect login information"]
     redirect '/login'
   end
 end
