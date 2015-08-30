@@ -6,7 +6,7 @@
 <div id="question_stats_list">
 	<%@survey.questions.each_with_index do |question,index|%>	
 	<div id="question_stat">
-		<%=index%>. <%=question.body%>
+		<%=index+1%>. <%=question.body%>
 	</div>
 	<div id="choice_stat_list">
 		<%question.choices.each do |choice|%>
