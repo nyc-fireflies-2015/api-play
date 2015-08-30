@@ -27,14 +27,9 @@ post '/questions' do
 end
 
 get '/questions/:id/edit' do
-  #private
   @question = Question.find_by(id: params[:id])
-  #fix errors - redirect, flash error
-  if @question.survey.created_by?(current_user)
-    erb :'questions/edit'
-  else
-    "unauth"
-  end
+  redirect "/" unless authorized?(@question.user.id)
+  erb :'questions/edit'
 end
 
 put '/questions/:id' do
