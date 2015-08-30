@@ -18,7 +18,7 @@ post '/takensurveys' do
   survey = Survey.find_by(id: params[:survey_id])
   taken_survey = TakenSurvey.new(taker: current_user, survey: survey)
   if taken_survey.save
-    redirect "/takensurveys/#{@taken_survey.id}/questions/#{@survey.questions.first.id}"
+    redirect "/takensurveys/#{taken_survey.id}/questions/#{survey.questions.first.id}"
   else
     flash[:error] = taken_survey.errors.full_messages
     redirect "/survey/#{survey.id}/taken_surveys/new"
