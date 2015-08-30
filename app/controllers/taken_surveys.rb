@@ -15,7 +15,7 @@ end
 post '/takensurveys' do
   @survey = Survey.find_by(id: params[:survey_id])
   @taken_survey = TakenSurvey.new(taker: current_user, survey: @survey)
-  #flash error, redirect to same page  
-  redirect '/something_bad_happened' unless @taken_survey.save
+  #flash error, redirect to same page
+  redirect '/' unless @taken_survey.save
   redirect "/takensurveys/#{@taken_survey.id}/questions/#{@survey.questions.first.id}"
 end

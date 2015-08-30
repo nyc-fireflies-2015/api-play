@@ -18,12 +18,7 @@
 <body>
   <div class="container">
     <%=erb :'_header'%>
-    <%if flash[:error] %>
-      <div id='flash-error'>
-        <%=flash[:error]%>
-      </div>
-    </div>
-  <%end%>
+    <%=erb :'_errors'%>
   <%= yield %>
 </body>
 </html>

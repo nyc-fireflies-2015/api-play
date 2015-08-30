@@ -7,10 +7,10 @@ post '/users' do
   user = User.new(params[:user])
   if user.save
     session[:user_id] = user.id
+    flash[:notice] = "Successful sign up!"
     redirect '/'
   else
-    #send full messages
-    flash[:error] = "Invalid signup!"
+    flash[:error] = user.errors.full_messages
     redirect '/signup'
   end
 end

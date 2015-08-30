@@ -4,10 +4,8 @@ class TakenSurvey < ActiveRecord::Base
   has_many :selections
 
   def taken_summary
-    #refactor each_with_object({})
-    summary_hash = {}
-    selections.each do |selection|
-      summary_hash[selection.choice.question.body] = selection.choice.body
+    summary_hash = selections.each_with_object({}) do |selection, hash|
+      hash[selection.choice.question.body] = selection.choice.body
     end
     summary_hash
   end
