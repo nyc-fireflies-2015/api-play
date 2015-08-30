@@ -9,10 +9,6 @@ class Survey < ActiveRecord::Base
     questions.find_by(id:current_question.id+1)
   end
 
-  def created_by?(user)
-    user.id==creator.id
-  end
-
   def total_takers
     taken_surveys.count
   end

@@ -17,25 +17,14 @@ end
 
 get '/users/:id' do
   @user = User.find_by(id: params[:id])
-  if logged_in? && current_user==@user
-    erb :'users/show'
-  else
-    #unauth error messages
-    flash[:error] = "You can only see your own profile!"
-    redirect '/'
-  end
+  redirect "/" unless authorized?(@user.id)
+  erb :'users/show'
 end
 
 get '/users/:id/edit' do
-  #private
   @user = User.find_by(id: params[:id])
-  if logged_in? && @user==current_user
-    erb :'users/edit'
-  else
-    #unauth error messages
-    flash[:error] = "You need to be logged in!"
-    redirect '/login'
-  end
+  redirect "/" unless authorized?(@user.id)
+  erb :'users/edit'
 end
 
 put '/users' do
