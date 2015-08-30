@@ -27,6 +27,7 @@ get '/users/:id' do
 end
 
 get '/users/:id/edit' do
+  #private
   @user = User.find_by(id: params[:id])
   if logged_in? && @user==current_user
     erb :'users/edit'
