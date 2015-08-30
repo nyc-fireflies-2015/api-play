@@ -16,10 +16,14 @@ get '/takensurveys/:taken_survey_id/questions/:id' do
 end
 
 post '/questions' do
-  @survey = Survey.find_by(id: params[:survey_id])
-  @question = @survey.questions.build(survey: @survey, body: params[:question][:body])
-  #flash notices if saved correctly or not
-  redirect "questions/#{@question.id}/choices/new"
+  survey = Survey.find_by(id: params[:survey_id])
+  question = survey.questions.build(survey: survey, body: params[:body])
+  if question.save
+    redirect "questions/#{question.id}/choices/new"
+  else
+    flash[:error] = question.errors.full_messages
+    redirect "surveys/#{survey.id}/questions/new"
+  end
 end
 
 get '/questions/:id/edit' do
@@ -30,22 +34,22 @@ get '/questions/:id/edit' do
     erb :'questions/edit'
   else
     "unauth"
-  end  
+  end
 end
 
-put '/questions/:id' do 
+put '/questions/:id' do
   question = Question.find_by(id: params[:id])
   question.update_attributes(params[:question])
   redirect "/questions/#{question.id}/choices/edit"
 end
 
-delete '/questions/:id' do 
+delete '/questions/:id' do
   question = Question.find_by(id: params[:id])
   question.destroy
   next_question = question.survey.next_question(question)
   if next_question.nil?
     redirect "/users/#{current_user.id}"
-  else  
+  else
     redirect "/questions/#{next_question.id}/edit"
   end
-end  
+end
