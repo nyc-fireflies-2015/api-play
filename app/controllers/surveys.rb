@@ -21,7 +21,6 @@ post "/surveys" do
     flash[:error] = ['You need a title and a category!']
     erb :'surveys/new'
   end
-  redirect "/surveys/#{survey.id}/questions/new"
 end
 
 get "/surveys/:id/edit" do
