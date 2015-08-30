@@ -1,8 +1,8 @@
 require_relative '../spec_helper'
 
 describe User do
-	it 'should have many responses' do
-		should have_many(:responses)
+	it 'should have many selections' do
+		should have_many(:selections)
 	end
 
 	it 'should have many taken_surveys' do
@@ -36,6 +36,10 @@ describe Survey do
 		should have_many(:questions)
 	end
 
+	it 'should have many choices' do
+		should have_many(:choices).through(:questions)
+	end
+
 	it 'should validate the presence of title' do
 		should validate_presence_of(:title)
 	end
@@ -57,5 +61,55 @@ describe Question do
 
 	it 'should validate the presence of body' do
 		should validate_presence_of(:body)
+	end
+end
+
+
+describe Choice do
+
+	it 'should belong to a questions' do
+		should belong_to(:survey)
+	end
+
+	it 'should belong to a survey' do
+		should belong_to(:survey)
+	end
+
+	it 'should have many selections' do
+		should have_many(:selections)
+	end
+
+	it 'should validate the presence of body' do
+		should validate_presence_of(:body)
+	end
+end
+
+describe TakenSurvey do
+
+	it 'should belong to a survey' do
+		should belong_to(:survey)
+	end
+
+	it 'should belong to a taker' do
+		should belong_to(:taker).class_name('User')
+	end
+
+	it 'should have many selections' do
+		should have_many(:selections)
+	end
+end
+
+describe Selection do
+
+	it 'should belong to a choice' do
+		should belong_to(:choice)
+	end
+
+	it 'should belong to a user' do
+		should belong_to(:user)
+	end
+
+	it 'should belong to a taken survey' do
+		should belong_to(:taken_survey)
 	end
 end

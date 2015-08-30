@@ -27,4 +27,6 @@ gem 'shotgun'
 
 group :test do
   gem 'rspec'
+  gem 'shoulda'
+  gem 'capybara'
 end
