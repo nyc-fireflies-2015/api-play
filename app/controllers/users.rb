@@ -17,13 +17,19 @@ end
 
 get '/users/:id' do
   @user = User.find_by(id: params[:id])
-  redirect "/" unless authorized?(@user.id)
+  if !authorized?(@user.id)
+    flash[:error] = ["You can only see your own profile!"]
+    redirect "/"
+  end
   erb :'users/show'
 end
 
 get '/users/:id/edit' do
   @user = User.find_by(id: params[:id])
-  redirect "/" unless authorized?(@user.id)
+  if !authorized?(@user.id)
+    flash[:error] = ["You can only edit your own profile!"]
+    redirect "/"
+  end
   erb :'users/edit'
 end
 
