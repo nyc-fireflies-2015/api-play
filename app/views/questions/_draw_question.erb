@@ -1,5 +1,5 @@
-<p><%=question.body%></p>
 <div id="question_container">
+<p><%=question.body%></p>
   <form action="/selections" id="run_survey"  method="post">
     <ul class="choice-list">
     <input type="hidden" name="taken_survey_id" value="<%=taken_survey.id%>">
