@@ -14,15 +14,9 @@ end
 
 post '/takensurveys' do
   survey = Survey.find_by(id: params[:survey_id])
-  questions = survey.questions
-  taken_survey = TakenSurvey.find_or_initialize_by(taker: current_user, survey: survey)
-  question = survey.next_question()
+  taken_survey = TakenSurvey.new(taker: current_user, survey: survey)
   if taken_survey.save
-    if request.xhr?
-      erb :"/questions/_draw_question", layout: false, locals: {question: question, taken_survey: taken_survey}
-    else
-      redirect "/takensurveys/#{taken_survey.id}/questions/#{survey.questions.first.id}"
-    end
+    redirect "/takensurveys/#{taken_survey.id}/questions/#{survey.questions.first.id}"
   else
     flash[:error] = taken_survey.errors.full_messages
     redirect "/survey/#{survey.id}/taken_surveys/new"
