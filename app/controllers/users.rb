@@ -16,20 +16,14 @@ post '/users' do
 end
 
 get '/users/:id' do
+  redirect "/" unless authorized?(params[:id].to_i)
   @user = User.find_by(id: params[:id])
-  if !authorized?(@user.id)
-    flash[:error] = ["You can only see your own profile!"]
-    redirect "/"
-  end
   erb :'users/show'
 end
 
 get '/users/:id/edit' do
+  redirect "/" unless authorized?(params[:id].to_i)
   @user = User.find_by(id: params[:id])
-  if !authorized?(@user.id)
-    flash[:error] = ["You can only edit your own profile!"]
-    redirect "/"
-  end
   erb :'users/edit'
 end
 
