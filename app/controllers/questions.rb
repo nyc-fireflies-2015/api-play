@@ -2,7 +2,7 @@ get '/surveys/:id/questions/new' do
   @survey = Survey.find_by(id: params[:id])
   @question = Question.new
   # fix this - 404 error
-  "error" unless @survey
+  # "error" unless @survey
   erb :'questions/new'
 end
 
@@ -10,7 +10,7 @@ get '/takensurveys/:taken_survey_id/questions/:id' do
   @question = Question.find_by(id: params[:id])
   @taken_survey = TakenSurvey.find_by(id: params[:taken_survey_id])
   # fix this
-  "error" unless @question && @taken_survey
+  # "error" unless @question && @taken_survey
   @choices = @question.choices
   erb :'questions/show'
 end
