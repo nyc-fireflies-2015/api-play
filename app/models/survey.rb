@@ -1,6 +1,7 @@
 class Survey < ActiveRecord::Base
   belongs_to :creator, class_name: :User
   has_many :questions
+  has_many :choices, through: :questions
   has_many :taken_surveys
 
   validates_presence_of :title, :category
@@ -13,8 +14,12 @@ class Survey < ActiveRecord::Base
     taken_surveys.count
   end
 
-  def percentage
-    num = num_times_chosen
+  def num_times_chosen(choice)
+    choices.find_by(id: choice.id).selections.count
+  end
+
+  def percentage(choice)
+    num = num_times_chosen(choice)
     ((num/(total_takers * 1.0))*100).round(2)
   end
 end
