@@ -1,6 +1,6 @@
 get '/questions/:id/choices/new' do
   @question = Question.find_by(id: params[:id])
- 	# fix all 404 error handling	
+ 	# fix all 404 error handling
  	# status 404 erb :somethingwrong unless @question
   erb :'choices/new'
 end
@@ -11,26 +11,20 @@ post '/choices' do
   redirect "/surveys/#{@question.survey.id}/questions/new"
 end
 
-get '/questions/:id/choices/edit' do 
-	#private
-	@question = Question.find_by(id: params[:id])
-	if @question.survey.created_by?(current_user)
-		@choices = @question.choices
-		erb :'choices/edit'
-	else
-		#fix this
-		#throw flash error, redirect to home
-		"unauth"
-	end	
+get '/questions/:id/choices/edit' do
+  @question = Question.find_by(id: params[:id])
+  redirect "/" unless authorized?(@question.user.id)
+	@choices = @question.choices
+	erb :'choices/edit'
 end
 
-put '/questions/:id/choices' do 
+put '/questions/:id/choices' do
 	question = Question.find_by(id: params[:id])
 	question.update_choices(params[:choice])
 	next_question = question.survey.next_question(question)
 	if next_question.nil?
 		redirect "/users/#{current_user.id}"
-	else	
+	else
 		redirect "/questions/#{next_question.id}/edit"
 	end
 end
