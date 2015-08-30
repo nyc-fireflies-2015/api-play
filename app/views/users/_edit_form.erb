@@ -1,0 +1,12 @@
+<ul>
+  <form action='/users' method='POST'>
+    <input type="hidden" name="_method" value="PUT" />
+    <p><label for='username'>Username: </label>
+    <input id='username' type='text' name='user[username]' value='<%=@user.username%>' /></p>
+    <p><label for='password'>Password: </label>
+    <input id='password' type='password' name='user[password]' /></p>
+    <p><label for='email'>Email: </label>
+    <input id='email' type='text' name='user[email]' value='<%=@user.email%>' /></p>
+    <input type='submit' value='Update Profile'/>
+  </form>
+</ul>
