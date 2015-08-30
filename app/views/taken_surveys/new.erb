@@ -1,8 +1,6 @@
 <h1 class="title"><%=@survey.title%></h1>
 
-<form action="/takensurveys" id="start_survey" method="post">
+<form action="/takensurveys" method="post">
   <input type="hidden" name="survey_id" value="<%=@survey.id%>">
   <input type="submit" value="Start survey!">
 </form>
-<div id="question_container">
-</div>
