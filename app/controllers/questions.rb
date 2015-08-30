@@ -30,7 +30,7 @@ end
 
 put '/questions/:id' do
   question = Question.find_by(id: params[:id])
-  question.update_attributes(params[:question])
+  question.update_attributes(body: params[:body])
   redirect "/questions/#{question.id}/choices/edit"
 end
 
