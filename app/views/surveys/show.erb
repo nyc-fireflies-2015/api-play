@@ -12,8 +12,8 @@
 		<%question.choices.each do |choice|%>
 		<div id="choice_stat">
 			<div><%=choice.body%><div>
-				<p><%=@survey.num_times_chosen(choice.id)%></p>
-				<p><%=@survey.percentage(choice.id)%> % </p>
+				<p><%=@survey.num_times_chosen(choice)%></p>
+				<p><%=@survey.percentage(choice)%> % </p>
 			</div>
 			<%end%>
 		</div>
