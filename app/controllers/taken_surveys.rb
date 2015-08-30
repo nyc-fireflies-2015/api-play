@@ -15,9 +15,12 @@ get '/takensurveys/:id' do
 end
 
 post '/takensurveys' do
-  @survey = Survey.find_by(id: params[:survey_id])
-  @taken_survey = TakenSurvey.new(taker: current_user, survey: @survey)
-  #flash error, redirect to same page
-  redirect '/' unless @taken_survey.save
-  redirect "/takensurveys/#{@taken_survey.id}/questions/#{@survey.questions.first.id}"
+  survey = Survey.find_by(id: params[:survey_id])
+  taken_survey = TakenSurvey.new(taker: current_user, survey: survey)
+  if taken_survey.save
+    redirect "/takensurveys/#{@taken_survey.id}/questions/#{@survey.questions.first.id}"
+  else
+    flash[:error] = taken_survey.errors.full_messages
+    redirect "/survey/#{survey.id}/taken_surveys/new"
+  end
 end
