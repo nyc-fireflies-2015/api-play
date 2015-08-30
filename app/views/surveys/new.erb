@@ -1,7 +1,4 @@
 <h1>Create New Survey</h1>
 	<div id="new_survey_form">
-		<form action="/surveys" method="POST">
-			<%= erb :'surveys/_new_form', locals: {survey: @survey} %>
-			<input type="submit" value="Create Survey">
-		</form>
+		<%= erb :'surveys/_new_form', locals: {survey: @survey} %>
 </div>

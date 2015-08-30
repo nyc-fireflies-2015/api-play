@@ -1,4 +1,8 @@
-<label for="title">Title</label>
-<input id ="title" type="text" name="survey[title]" value="<%=@survey.title%>">
-<label for="category">Category</label>
-<input id="category" type="text" name="survey[category]" value="<%=@survey.category%>">
+<form action="/surveys/<%=@survey.id%>" method="post">
+  <input type="hidden" name="_method" value="put">
+  <label for="title">Title</label>
+  <input id ="title" type="text" name="survey[title]" value="<%=@survey.title%>">
+  <label for="category">Category</label>
+  <input id="category" type="text" name="survey[category]" value="<%=@survey.category%>">
+  <input type="submit" value="Edit Survey">
+</form>
