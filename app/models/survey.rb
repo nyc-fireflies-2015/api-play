@@ -13,14 +13,8 @@ class Survey < ActiveRecord::Base
     taken_surveys.count
   end
 
-  def num_times_chosen(id)
-    #refactor
-    Selection.where(choice_id: id).count
-  end
-
-  def percentage(id)
-    #refactor
-    num = num_times_chosen(id)
+  def percentage
+    num = num_times_chosen
     ((num/(total_takers * 1.0))*100).round(2)
   end
 end
