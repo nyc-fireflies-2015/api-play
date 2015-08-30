@@ -1,8 +1,8 @@
 require_relative '../spec_helper'
 
 describe User do
-	it 'should have many responses' do
-		should have_many(:responses)
+	it 'should have many selections' do
+		should have_many(:selections)
 	end
 
 	it 'should have many taken_surveys' do
