@@ -24,7 +24,7 @@ end
 
 get '/questions/:id/edit' do
   @question = Question.find_by(id: params[:id])
-  redirect "/" unless authorized?(@question.user.id)
+  redirect "/" unless authorized?(@question.survey.creator.id)
   erb :'questions/edit'
 end
 
