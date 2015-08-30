@@ -3,6 +3,7 @@
 <form action="/selections" method="post">
   <ul class="choice-list">
   <input type="hidden" name="taken_survey_id" value="<%=@taken_survey.id%>">
+  <input type="hidden" name="question_id" value="<%=@question.id%>">
   <% @question.choices.each do |choice| %>
     <p><input type="radio" name="choice_id" value="<%=choice.id%>"><%=choice.body%></p>
   <% end %>
