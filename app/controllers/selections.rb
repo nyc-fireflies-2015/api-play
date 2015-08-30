@@ -6,8 +6,17 @@ post '/selections' do
 
   if @selection.save
     if request.xhr?
-      erb :"/taken_surveys/show", layout: false unless next_question
-      erb :"/questions/_draw_question", layout: false, locals: {taken_survey: @taken_survey, question: next_question}
+      if next_question.nil?
+        erb :"/taken_surveys/_show_answers", layout: false, locals: {
+          survey: @taken_survey.survey,
+          taken_summary: @taken_survey.taken_summary
+          }
+      else
+        erb :"/questions/_draw_question", layout: false, locals: {
+          taken_survey: @taken_survey,
+          question: next_question
+        }
+      end
     else
       redirect "/takensurveys/#{@taken_survey.id}"
     end
