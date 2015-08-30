@@ -19,6 +19,7 @@ post "/surveys" do
 end
 
 get "/surveys/:id/edit" do
+  #private
   @survey = Survey.find_by(id: params[:id])
   if @survey.created_by?(current_user)
   	erb :'surveys/edit'

@@ -12,6 +12,7 @@ post '/choices' do
 end
 
 get '/questions/:id/choices/edit' do 
+	#private
 	@question = Question.find_by(id: params[:id])
 	if @question.survey.created_by?(current_user)
 		@choices = @question.choices

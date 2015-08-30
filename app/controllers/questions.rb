@@ -23,6 +23,7 @@ post '/questions' do
 end
 
 get '/questions/:id/edit' do
+  #private
   @question = Question.find_by(id: params[:id])
   #fix errors - redirect, flash error
   if @question.survey.created_by?(current_user)
