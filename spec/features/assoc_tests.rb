@@ -59,3 +59,23 @@ describe Question do
 		should validate_presence_of(:body)
 	end
 end
+
+
+describe Choices do
+
+	it 'should belong to a questions' do
+		should belong_to(:survey)
+	end
+
+	it 'should belong to a survey' do
+		should belong_to(:survey)
+	end
+
+	it 'should have many selections' do
+		should have_many(:selections)
+	end
+
+	it 'should validate the presence of body' do
+		should validate_presence_of(:body)
+	end
+end
