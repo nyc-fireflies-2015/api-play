@@ -1,17 +1,14 @@
-$('document').ready(function(){
-
-  $('.question_wrapper').on("submit",function(event){
-    var target = $(event.target);
-    event.preventDefault();
-
-    $.ajax(target.attr("action"),{
-      data: target.serialize(),
-      method: target.attr("method")
-    }).done(function(response){
-      $(".question_container").replaceWith(response);
-    }).fail(function() {
-      alert("Error")
-    });
-
-  });
-});
+$(document).ready(function(){
+  $('#get_api').on('click', function(event){
+    $.getJSON("http://www.reddit.com/r/pics.json?jsonp=?", function(response){
+      $.each(response.data.children.slice(0,10), function(i, post){
+        $(".content").append( '<br>' + post.data.title );
+        $(".content").append( '<br>' + post.data.url );
+        $(".content").append( '<br>' + post.data.permalink );
+        $(".content").append( '<br>' + post.data.ups );
+        $(".content").append( '<br>' + post.data.downs );
+        $(".content").append( '<hr>' );
+      })
+    })
+  })
+})
